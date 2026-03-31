@@ -47,6 +47,19 @@ npx skills add kruchoski/skills --skill <skill-name>
 
 ---
 
+## Security Notes
+
+Four skills trigger Snyk W011 warnings ("third-party content exposure / indirect prompt injection risk") because they intentionally process external content:
+
+- **antislop** — accepts user-pasted text for AI pattern detection and editing
+- **persona-simulator** — researches public profiles (LinkedIn, news) to build persona simulations
+- **stakeholder-cabinet** — searches public sources to populate stakeholder persona cards
+- **linkedin-draft** — fetches external URLs (source articles) before drafting
+
+These warnings are expected and by design. The skills need external content to function. The risk is inherent to any tool that processes untrusted input through an LLM. All other skills pass all three audits (Gen Agent Trust Hub, Socket, Snyk) cleanly.
+
+---
+
 ## License
 
 MIT
